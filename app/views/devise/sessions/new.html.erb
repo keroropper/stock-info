@@ -1,26 +1,40 @@
-<h2>Log in</h2>
+<div class="sign_up">
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
-
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+  <div style="display: flex; justify-content: center; align-items: center; width:200px; height:60px; background-color:#800000; margin: 200px 0 0 200px;">
+    <div style=" font-size:40px; color:white; font-weight:bold;" >
+      Stockapp
     </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
   </div>
-<% end %>
 
-<%= render "devise/shared/links" %>
+  <div class="text-center" style="margin: 0;">
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <%= render "shared/error_messages", model: resource %>
+
+      <div>
+        <h1>ログイン</h1>
+      </div>
+
+      <div class="field">
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "メールアドレス",
+        :style=>"height:40px; width:400px; border:none; border:solid 1px silver; border-radius:5px; margin-bottom:15px;" %>
+      </div>
+
+      <div class="field">
+        <%= f.password_field :password, autocomplete: "new-password", placeholder: "パスワード",
+        :style=>"height:40px; width:400px;border:none; border:solid 1px silver; border-radius:5px; margin-bottom:15px;" %>
+      </div>
+
+      <div class="field">
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "パスワード(確認用)",
+        :style=>"height:40px; width:400px;border:none; border:solid 1px silver; border-radius:5px; " %>
+      </div>
+
+      <div class="actions" style="font-size:20px; margin-top:20px;">
+        <%= f.submit "ログイン" %>
+      </div>
+    <% end %>
+
+    <%= render "devise/shared/links" %>
+  </div>
+
+</div>
