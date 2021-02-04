@@ -1,13 +1,15 @@
 <div class="container-fluid bg-light">
   <div class="row d-flex">
+
     <div class="text-center vh-100" style="width: 25%; height: 800px; overflow: auto; margin-top: 30px;">
       <header>
         <h3>💰株ニュース💰</h3>
           <p>Powered by <a href="https://newsapi.org">News API</a></p>
       </header>
       <hr>
+
       <div class="articles">
-        <% @article_news["articles"].each do |article| %>
+        <% article_news["articles"].each do |article| %>
           <div class="article">
             <div class="title">
               <%= link_to article["title"], article["url"] %>
@@ -30,8 +32,10 @@
         <% end %>
       </div>
     </div> 
+
+
     <div class="all-article" style="width: 50%; margin-top: 30px;">
-      <% article.each do |article| %>
+      <% articles.each do |article| %>
         <div class="list-group border-bottom bg-white m-0"style="height: 155px;">
           <%= link_to article_path(article.id) do %>
 
@@ -49,7 +53,7 @@
                 <div class="mb-2">
                   <span class="glyphicon glyphicon-tags " aria-hidden="true">
                     <% article.tags.each do |i| %>
-                        <%= link_to i.name,:style=>"color:black; margin-left:10px; text-decoration: underline;" %>
+                        <%= link_to i.name, tags_index_path(tag_id: i.id), :style=>"color:black; margin-left:10px; text-decoration: underline;" %>
                     <%end%>
                   </span>
                 </div>
@@ -63,8 +67,11 @@
           <% end %>
         </div>
       <% end %>
-      <%= paginate @articles %>
+      <div style="text-align:center;">
+        <%= paginate @articles%>
+      </div>
     </div>      
+
     <div class="col-sm-3 text-center" style="width: 25%; margin-top: 30px;">
       <div class="fs-2">日経平均株価
         <p><%= nikkei_value %></p>
@@ -76,6 +83,7 @@
         <p><%= exchange_rate %></p>
       </div>
     </div>
+
   </div>
   <footer>
     <%= render "shared/footer" %>

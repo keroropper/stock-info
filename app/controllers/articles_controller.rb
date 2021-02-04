@@ -8,6 +8,15 @@ class ArticlesController < ApplicationController
     include = ArticlesHelper
   end
 
+  def tag_index
+    if params[:tag_id].present?
+      @tag = Tag.find(params[:tag_id])
+      @articles = @tag.articles.order("created_at DESC").page(params[:page]).order("created_at DESC")
+    else
+      @articles = Article.all.order("created_at DESC").page(params[:page]).order("created_at DESC")
+    end
+  end
+
   def new
     @article = Article.new
   end

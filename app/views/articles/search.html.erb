@@ -3,7 +3,7 @@
 </header>
 <% if @articles.present? %>
   <div class="contents row">
-    <%= render partial: "shared/search_resoult", locals: { article: @articles } %>
+    <%= render partial: "shared/articles", locals: { articles: @articles, article_news: @article_news } %>
     
   </div>
 <% else %>
