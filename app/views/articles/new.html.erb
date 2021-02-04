@@ -33,7 +33,9 @@
           maxlength:"1000", class: "fs-3 overflow-auto", style: "height: 400px; width: 100%; border: none; resize: none;",
           "v-model" => "input", name: "stockapp[content]" %> 
         </div>
-
+        <div class="content-marked" style="width: 50%; border-right: solid 1px silver; border-bottom: solid 1px silver;">
+          <div v-html='input | marked' style="width: 100%; "></div>
+        </div>
       </div>
     </div>
 
@@ -49,3 +51,17 @@
 
   </div>
 </div>
+
+<script type="text/javascript">
+  window.onload = function() {
+    new Vue({
+      el: '#editor',
+      data: {
+        input: '<%== j @article.content %>',
+      },
+      filters: {
+        marked: marked,
+      },
+    });
+  };
+</script>
