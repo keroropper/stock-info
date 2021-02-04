@@ -4,6 +4,7 @@ class ArticlesController < ApplicationController
   before_action :stock_news
 
   def index
+    include = ArticlesHelper
   end
 
 

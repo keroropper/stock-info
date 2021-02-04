@@ -33,4 +33,20 @@
         <% end %>
       </div>
     </div> 
+
+
+
+    <div class="col-sm-3 text-center" style="width: 25%; margin-top: 30px;">
+      <div class="fs-2">日経平均株価
+        <p><%= nikkei_value %></p>
+      </div>
+      <div class="fs-2">NYダウ
+        <p><%= dow_value %></p>
+      </div>
+      <div class="fs-2">アメリカ ドル / 日本 円
+        <p><%= exchange_rate %></p>
+      </div>
+    </div>
+
+
  <%=link_to "ログアウト", destroy_user_session_path, method: :delete%>
