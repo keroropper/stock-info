@@ -7,6 +7,12 @@ class ArticlesController < ApplicationController
     include = ArticlesHelper
   end
 
+    def new
+  end
+
+  def create
+  end
+
 
   private
 
