@@ -1,0 +1,67 @@
+<header>
+  <%= render "shared/header" %>
+</header>
+<div class="article-new" style="height: 100%; width: 100%;">
+  <div class="post-article">
+
+  <%= form_with model: @article, url: article_path(@article), local: true do |f| %>
+    <%= render "shared/error_messages", model: f.object %>
+
+    <div calss="">
+      <%= f.text_field :title, id: "article-title", placeholder:"タイトルを40文字以内で入力してください", class: "vw-100 mb-1 fs-1", style: "height: 60px; border: 1px solid silver;",maxlength:"40" %>
+    </div>
+
+    <div calss="article-tag">
+      <%= f.text_field :name, placeholder:"株知識に関するタグをスペース区切りで入力",id: "article-tag-name", class: "vw-100 mb-1 ", style: "height: 30px; border: 1px solid silver;"%>
+    </div>
+    <div id="search-result">
+    </div>
+
+    <div calss="article-image">
+      <%= f.file_field :images, name: 'article[images][]', id: "article-image" %>
+    </div>
+    
+    <div style="overflow: auto; margin-bottom: 20px; width: 100%; height: 370px; border: 1px solid silver;">
+      <p style="color: gray; font-size: 15px;">ファイルを選択すると画像(300×300)が表示されます</p>
+      <div id="image-list" class="d-flex"></div>
+    </div>
+
+    <div calss="article-text" style="border-top: 1px solid silver;">
+      <div id="editor" class="d-flex">
+        <div class="content" style="width: 50%; border: solid 1px silver; border-top: none;">
+          <%= f.text_area :content, placeholder:"株知識をMarkdown記法で書いて共有しよう(1000字以内)", id: "article-content",
+          maxlength:"1000", class: "fs-3 overflow-auto", style: "height: 400px; width: 100%; border: none; resize: none;",
+          "v-model" => "input", name: "stockapp[content]" %> 
+        </div>
+        <div class="content-marked" style="width: 50%; border-right: solid 1px silver; border-bottom: solid 1px silver;">
+          <div v-html='input | marked' style="width: 100%; "></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="string-count" style="margin-bottom: 30px; font-size: 20px;">
+      0文字
+    </div>
+
+
+    <div calss="article-post">
+        <p style="margin: 0 612px;" ><%= f.submit "投稿する", class:"post-btn bg-primary border-0", style:"padding: 15px 80px;"%></p>
+    </div>
+ <% end %>
+
+  </div>
+</div>
+
+<script type="text/javascript">
+  window.onload = function() {
+    new Vue({
+      el: '#editor',
+      data: {
+        input: '<%== j @article.content %>',
+      },
+      filters: {
+        marked: marked,
+      },
+    });
+  };
+</script>
