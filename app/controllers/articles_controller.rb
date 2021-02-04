@@ -4,6 +4,7 @@ class ArticlesController < ApplicationController
   before_action :stock_news
 
   def index
+    @articles = Article.page(params[:page]).order("created_at DESC")
     include = ArticlesHelper
   end
 
