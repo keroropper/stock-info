@@ -7,10 +7,20 @@ class ArticlesController < ApplicationController
     include = ArticlesHelper
   end
 
-    def new
+  def new
+    @article = Article.new
   end
 
   def create
+    # binding.pry
+    @article = Article.new(article_tag_params)
+    if @article.save
+      tag_list = tag_params[:name].split(/[[:blank:]]+/).select(&:present?)#空白で区切る
+      @article.save_tags(tag_list)
+      redirect_to root_path
+    else
+      render action: :new
+    end
   end
 
 
