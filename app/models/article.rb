@@ -3,6 +3,7 @@ class Article < ApplicationRecord
   has_many :tags, through: :article_tag_relations
   has_many_attached :images
   belongs_to :user
+  has_many :likes
 
   with_options presence: true do
     validates :title, length: { maximum: 40 }
@@ -24,5 +25,9 @@ class Article < ApplicationRecord
         tag_list = Tag.find_or_create_by(name:new_name)
         self.tags << tag_list
       end
+  end
+
+  def like_user(user_id)
+    likes.find_by(user_id: user_id)
   end
 end

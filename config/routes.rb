@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     collection do
       get 'search'
     end
+    resource :likes, only: [:create, :destroy]
   end
   get 'tags/index' => 'articles#tag_index'
 end
