@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_04_081851) do
+ActiveRecord::Schema.define(version: 2021_02_04_115247) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -51,6 +51,15 @@ ActiveRecord::Schema.define(version: 2021_02_04_081851) do
     t.index ["user_id"], name: "index_articles_on_user_id"
   end
 
+  create_table "likes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "article_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["article_id"], name: "index_likes_on_article_id"
+    t.index ["user_id"], name: "index_likes_on_user_id"
+  end
+
   create_table "tags", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -74,4 +83,6 @@ ActiveRecord::Schema.define(version: 2021_02_04_081851) do
   add_foreign_key "article_tag_relations", "articles"
   add_foreign_key "article_tag_relations", "tags"
   add_foreign_key "articles", "users"
+  add_foreign_key "likes", "articles"
+  add_foreign_key "likes", "users"
 end
