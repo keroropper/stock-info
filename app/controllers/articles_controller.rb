@@ -32,6 +32,10 @@ class ArticlesController < ApplicationController
     end
   end
 
+  def show
+    @article = Article.find(params[:id])
+  end
+
   def search
     @articles = Article.joins(:tags)
     @keywords = params[:keyword].split(/[[:blank:]]+/)
