@@ -1,0 +1,11 @@
+<header>
+  <%= render "shared/header" %>
+</header>
+<% if @articles.present? %>
+  <div class="contents row">
+    <%= render partial: "shared/search_resoult", locals: { article: @articles } %>
+    
+  </div>
+<% else %>
+  <%= render "shared/no_search_resoult" %>
+<% end %>

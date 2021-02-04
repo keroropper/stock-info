@@ -1,0 +1,65 @@
+<div class="container-fluid bg-light">
+  <div class="row d-flex">
+
+    <div class="text-center vh-100" style="width: 25%; height: 800px; overflow: auto; margin-top: 30px;">
+      <header>
+        <h3>💰株ニュース💰</h3>
+          <p>Powered by <a href="https://newsapi.org">News API</a></p>
+      </header>
+      <hr>
+      <div class="articles">
+        <% @article_news["articles"].each do |article| %>
+          <div class="article">
+            <div class="title">
+              <%= link_to article["title"], article["url"] %>
+            </div>
+            <div class="wrapper">
+              <div class="date">
+                <%= article["publishedAt"] %>
+              </div>
+              <div class="source">
+                <%= article["source"]["name"] %>
+              </div>
+              <div class="image">
+                <%= image_tag article["urlToImage"], style:"width: 250px; height: 150px;" %>
+              </div>
+              <div class="content">
+                <%= article["description"] %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div> 
+
+
+    <div class="all-article " style="width: 50%; margin-top: 30px;">
+      <div class="no_resoult-icon text-center" style="margin:50px 0 10px 0;">
+        <i class="far fa-dizzy fa-3x"></i>
+      </div>
+      <div class="d-flex fs-2" style="justify-content:center; ">
+        <% @keywords.each do |k| %>
+        「<%= k %>」
+        <% end %>
+        <p>に一致する記事は見つかりませんでした。</p>
+      </div>
+    </div>      
+
+    <div class="col-sm-3 text-center" style="width: 25%; margin-top: 30px;">
+      <div class="fs-2">日経平均株価
+        <p><%= nikkei_value %></p>
+      </div>
+      <div class="fs-2">NYダウ
+       <p><%= dow_value %></p>
+      </div>
+      <div class="fs-2">アメリカ ドル / 日本 円
+        <p><%= exchange_rate %></p>
+      </div>
+    </div>
+  </div>
+  
+    <footer>
+      <%= render "shared/footer" %>
+    </footer>
+
+</div>

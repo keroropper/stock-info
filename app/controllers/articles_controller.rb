@@ -13,7 +13,6 @@ class ArticlesController < ApplicationController
   end
 
   def create
-    # binding.pry
     @article = Article.new(article_tag_params)
     if @article.save
       tag_list = tag_params[:name].split(/[[:blank:]]+/).select(&:present?)#空白で区切る
@@ -22,6 +21,19 @@ class ArticlesController < ApplicationController
     else
       render action: :new
     end
+  end
+
+  def search
+    @articles = Article.joins(:tags)
+    @keywords = params[:keyword].split(/[[:blank:]]+/)
+    keywords = @keywords.map do |keyword|
+      @articles.where("title LIKE(:keyword) OR content LIKE(:keyword) OR tags.name LIKE(:keyword)", keyword: "%#{keyword}%")
+    end
+    @articles = @articles.merge(keywords[0])
+    keywords[1, keywords.length].each do |keyword|
+      @articles = @articles.or(keyword)
+    end
+    @articles = @articles.page(params[:page]).order("created_at DESC")
   end
 
 
