@@ -5,5 +5,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_many :articles
   has_many :likes
+  has_many :comments
   validates :nickname, presence: true, length: { in: 2..6 } 
 end
