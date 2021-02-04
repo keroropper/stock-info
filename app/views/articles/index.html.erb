@@ -2,6 +2,9 @@
   <%= render "shared/header" %>
 </header>
 
+<div class="container-fluid bg-light">
+  <div class="row d-flex">
+
     <div class="text-center vh-100" style="width: 25%; height: 800px; overflow: auto; margin-top: 30px;">
       <header>
         <h3>💰株ニュース💰</h3>
@@ -34,7 +37,40 @@
       </div>
     </div> 
 
+        <div class="all-article" style="width: 50%; margin-top: 30px;">
+      <%# @articles.each do |article| %>
+        <div class="list-group border-bottom bg-white m-0"style="height: 155px;">
+          <%#= link_to article_path(article.id) do %>
 
+            <div class="list-group list-group-flush my-auto" style="width: 640px; margin-left: 25px; position:absolute;">
+                <div class="text-dark d-flex mt-4 fs-5">
+                  <%# <p class="font-weight-bold">@<%= article.user.nickname %></p>が<%#=time_ago_in_words(article.created_at)%>前に投稿 %>
+                </div>
+
+                <div class="text-dark">
+                  <h2 class="my-2 fs-1 mb-2">
+                  <%#= article.title %>
+                  </h2>
+                </div>
+
+                <div class="mb-2">
+                  <span class="glyphicon glyphicon-tags " aria-hidden="true">
+                    <%# article.tags.each do |i| %>
+                        <%#= link_to i.name, tags_index_path(tag_id: i.id),:style=>"color:black; margin-left:10px; text-decoration: underline;" %>
+                    <%# end %>
+                  </span>
+                </div>
+
+                <div class="text-wrap" >
+                  <a class="through-content" style="color: #BBBBBB;">
+                    <p class="my-3"><%#= truncate(article.content, length: 60)  %></p>
+                  </a>
+                </div>
+            </div>
+
+          <%# end %>
+        </div>
+      <%# end %>
 
     <div class="col-sm-3 text-center" style="width: 25%; margin-top: 30px;">
       <div class="fs-2">日経平均株価
@@ -48,5 +84,8 @@
       </div>
     </div>
 
+  </div>
 
- <%=link_to "ログアウト", destroy_user_session_path, method: :delete%>
+</div>
+
+
