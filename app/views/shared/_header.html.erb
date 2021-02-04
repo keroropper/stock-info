@@ -1,0 +1,42 @@
+<div class="header vw-100">
+  <div class="d-flex  align-items-center p-3 mb-2 text-dark" style="background-color:#800000;">
+
+    <div class="app-name" style="width: 25%;">
+      <a href="/" >
+        <span id="app_name" class="display-4 text-white" style="font-weight: bold;">Stockapp</span>
+      </a>
+    </div>
+
+    <div style="width: 50%; display:flex; justify-content: center;">
+      <div class="search-form">
+        <%= form_with(url: "#", local: true, method: :get, class: "search_form") do |form| %>
+          <span class="glyphicon glyphicon-search" aria-hidden="true" style="font-size: 15px; padding: 0 8px;"></span>
+          <%= form.text_field :keyword, placeholder: "キーワードを入力", :style=>"height:40px; width: 400px; border:none; border-radius: 5px;" %>
+          <%= form.submit "検索", :style=>"display:none;"%>
+        <% end %>
+      </div>
+    </div>
+
+    <div style="width: 25%; display: flex; justify-content: center;">
+      <div class="text-center">
+        <%= link_to "投稿する", "#", class:"new-post-link" %>
+      </div>
+
+      <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false"  style="padding: 15px 15px;">
+          メニュー
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <% if user_signed_in? %>
+            <li><a class="dropdown-item" href="/">マイページ</a></li>
+            <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
+          <% else %>
+            <li><%= link_to "新規登録", new_user_registration_path %></li>
+            <li><%= link_to "ログイン", new_user_session_path %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+
+  </div>  
+</div>
