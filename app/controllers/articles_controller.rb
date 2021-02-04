@@ -38,6 +38,22 @@ class ArticlesController < ApplicationController
     @comments = @article.comments.includes(:user)
   end
 
+  def edit
+    @article = Article.find(params[:id])
+    @tag_list = @article.tags.pluck(:name)
+  end
+
+  def update
+    @article = Article.find(params[:id])
+    if @article.update(article_tag_params)  
+       tag_list = tag_params[:name].split(/[[:blank:]]+/).select(&:present?)#空白で区切る  
+       @article.save_tags(tag_list)
+      redirect_to root_path
+    else
+      render :edit
+    end
+  end
+
   def search
     @articles = Article.joins(:tags)
     @keywords = params[:keyword].split(/[[:blank:]]+/)
