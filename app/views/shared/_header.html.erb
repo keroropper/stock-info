@@ -9,7 +9,7 @@
 
     <div style="width: 50%; display:flex; justify-content: center;">
       <div class="search-form">
-        <%= form_with(url: "#", local: true, method: :get, class: "search_form") do |form| %>
+        <%= form_with(url: search_articles_path, local: true, method: :get, class: "search_form") do |form| %>
           <span class="glyphicon glyphicon-search" aria-hidden="true" style="font-size: 15px; padding: 0 8px;"></span>
           <%= form.text_field :keyword, placeholder: "キーワードを入力", :style=>"height:40px; width: 400px; border:none; border-radius: 5px;" %>
           <%= form.submit "検索", :style=>"display:none;"%>
