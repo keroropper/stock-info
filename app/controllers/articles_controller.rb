@@ -26,6 +26,15 @@ class ArticlesController < ApplicationController
 
   private
 
+  def article_tag_params
+    params.require(:article).permit(:title, :content).merge(user_id: current_user.id,
+       images: params[:article][:images], content: params[:stockapp][:content])
+  end
+
+  def tag_params
+    params.require(:article).permit(:name)
+  end
+
   def stock_news
     api = Rails.application.credentials.news_api[:api_key]
     uri = "https://newsapi.org/v2/everything?q=%E6%A0%AA%E4%BE%A1&sortBy=popularity&apiKey=#{api}"

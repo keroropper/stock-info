@@ -7,8 +7,8 @@ class Tag < ApplicationRecord
   before_save :downcase_tag_name
 
   private
-
-  def downcase_tag_name   #処理が始まる前に、保存される値を全て小文字に変換
+  
+  def downcase_tag_name   
     self.name.downcase!
   end
 end
