@@ -1,7 +1,8 @@
 class ArticlesController < ApplicationController
   require 'open-uri'
-  
-  before_action :stock_news
+  before_action :set_params, only: [:show, :edit, :update]
+  before_action :authenticate_user!, except: [:index, :show]
+  before_action :stock_news, only: [:index, :tag_index, :search]
 
   def index
     @articles = Article.page(params[:page]).order("created_at DESC")
@@ -11,9 +12,9 @@ class ArticlesController < ApplicationController
   def tag_index
     if params[:tag_id].present?
       @tag = Tag.find(params[:tag_id])
-      @articles = @tag.articles.order("created_at DESC").page(params[:page]).order("created_at DESC")
+      @articles = @tag.articles.page(params[:page]).order("created_at DESC")
     else
-      @articles = Article.all.order("created_at DESC").page(params[:page]).order("created_at DESC")
+      @articles = Article.page(params[:page]).order("created_at DESC")
     end
   end
 
@@ -33,18 +34,18 @@ class ArticlesController < ApplicationController
   end
 
   def show
-    @article = Article.find(params[:id])
     @comment = Comment.new
     @comments = @article.comments.includes(:user)
   end
 
   def edit
-    @article = Article.find(params[:id])
+    unless @article.id == current_user.id
+      redirect_to root_path
+    end
     @tag_list = @article.tags.pluck(:name)
   end
 
   def update
-    @article = Article.find(params[:id])
     if @article.update(article_tag_params)  
        tag_list = tag_params[:name].split(/[[:blank:]]+/).select(&:present?)#空白で区切る  
        @article.save_tags(tag_list)
@@ -69,6 +70,10 @@ class ArticlesController < ApplicationController
 
 
   private
+
+  def set_params
+    @article = Article.find(params[:id])
+  end
 
   def article_tag_params
     params.require(:article).permit(:title, :content).merge(user_id: current_user.id,

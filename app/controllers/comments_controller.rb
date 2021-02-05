@@ -4,8 +4,6 @@ class CommentsController < ApplicationController
     @comment = Comment.new(comment_params)
       if @comment.save
         redirect_to "/articles/#{@comment.article.id}"
-      else
-        render root_path
       end
   end
   

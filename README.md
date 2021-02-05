@@ -1,24 +1,30 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# アプリ名:Stockapp
 
-Things you may want to cover:
+# 概要
+  Stockappは株の知識に関する情報共有アプリです。
+  株に関するニュースを閲覧できたり、株についての知見を投稿、閲覧することができます。
 
-* Ruby version
+# 投稿
+  投稿は、
+  ・タイトル
+  ・タグ
+  ・画像
+  ・本文
+  のについて入力できます。
 
-* System dependencies
+# 検索
+  キーワードを入力すると、それが含まれているタイトル、タグ、本文が結果として表示されます。
 
-* Configuration
+# ニュース
+  画面左部のニュースは、タイトルをクリックするとニュースサイトに遷移し、全文を閲覧することができます。
 
-* Database creation
+# 目指した課題解決
+  株に対して「怖い」というイメージを持っている方々に、楽しんで株を始められるきっかけとなることを目指します
 
-* Database initialization
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+# 実装予定の機能
+  投稿画像の削除と編集ができるようにします。
+  他の人の投稿を保存できるようにします。
+  マイページを実装し、保存した投稿を見れるようにします。
