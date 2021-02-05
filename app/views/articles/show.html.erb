@@ -42,11 +42,13 @@
         <%= markdown(@article.content) %>
       </div>
 
-      <div style="border-bottom: 1px solid #EEEEEE;">
-        <div style="width: 100px; margin-bottom: 50px; ">
-          <%= link_to "編集", edit_article_path, class:"edit-link" %>
+      <% if @article.id == current_user.id %>
+        <div style="border-bottom: 1px solid #EEEEEE;">
+          <div style="width: 100px; margin-bottom: 50px; ">
+            <%= link_to "編集", edit_article_path, class:"edit-link" %>
+          </div>
         </div>
-      </div>
+      <% end %>
 
       <div class="comments" style="margin: 50px 0px;">
         <h2>＜コメント一覧＞</h2>
@@ -59,11 +61,20 @@
       </div>
 
       <div class="align-items-end" style="width: 100%; height: 250px;">
-        <%= form_with(model: [@article, @comment], local: true) do |form| %>
-          <p><%= form.text_area :text, placeholder: "テキストを入力", :style=>"width: 80%; height: 150px;"%></p>
-          <p><%= form.submit "投稿" %></p>
-        <% end %>
+        <div class="comment-area">
+            <%= form_with(model: [@article, @comment], local: true) do |form| %>
+              <p><%= form.text_area :text, placeholder: "テキストを入力", :style=>"width: 80%; height: 150px;"%></p>
+              <p><%= form.submit "投稿" %></p>
+            <% end %>
+          </div>
       </div>
+
+      <script>
+      $('.comment-area').submit(function(e) {
+        var count = $('#comment_text').val().length;
+        if( !count ) return false;
+      });
+      </script>
 
     </div>
 

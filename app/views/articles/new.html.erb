@@ -31,7 +31,7 @@
         <div class="content" style="width: 50%; border: solid 1px silver; border-top: none;">
           <%= f.text_area :content, placeholder:"株知識をMarkdown記法で書いて共有しよう(1000字以内)", id: "article-content",
           maxlength:"1000", class: "fs-3 overflow-auto", style: "height: 400px; width: 100%; border: none; resize: none;",
-          "v-model" => "input", name: "stockapp[content]" %> 
+          "v-model" => "input", name: "stock-info[content]" %> 
         </div>
         <div class="content-marked" style="width: 50%; border-right: solid 1px silver; border-bottom: solid 1px silver;">
           <div v-html='input | marked' style="width: 100%; "></div>
