@@ -1,7 +1,7 @@
 class ArticlesController < ApplicationController
   require 'open-uri'
   before_action :set_params, only: [:show, :edit, :update]
-  before_action :authenticate_user!, except: [:index, :show]
+  before_action :authenticate_user!, except: [:index, :show, :search, :tag_index]
   before_action :stock_news, only: [:index, :tag_index, :search]
 
   def index

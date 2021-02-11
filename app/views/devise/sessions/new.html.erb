@@ -1,12 +1,15 @@
-<div class="sign_up">
+<div class="sign_up vh-100 d-flex" style="align-items: center;">
 
-  <div style="display: flex; justify-content: center; align-items: center; width:200px; height:60px; background-color:#800000; margin: 200px 0 0 200px;">
-    <div style=" font-size:40px; color:white; font-weight:bold;" >
+  <div style= "width: 30%; height: 100%; margin-top:340px; text-align: right;">
+    <div style=" font-size:40px; color:white; font-weight:bold; height:60px; background-color:#800000; width:200px; text-align:center; margin-left: 230px;" >
       Stockapp
     </div>
+    <h3 style="border-bottom: solid 2px black;">テストアカウント<h3>
+    <p style="margin-bottom:30px;">メールアドレス : test@1</p>
+    <p style="margin-bottom:30px;">パスワード : 123456</p>
+    <p>パスワード(確認用) : 123456</p>
   </div>
-
-  <div class="text-center" style="margin: 0;">
+  <div class="text-center" style="margin: 0; width:40%;">
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
       <%= render "shared/error_messages", model: resource %>
 
@@ -35,6 +38,9 @@
     <% end %>
 
     <%= render "devise/shared/links" %>
+  </div>
+
+  <div style="width:30%; height: 100%;">
   </div>
 
 </div>
