@@ -67,3 +67,6 @@ gem 'coderay'
 gem 'kaminari'
 gem 'rails-i18n', '~> 6.0'
 
+group :production, :staging do
+    gem 'unicorn'
+end
