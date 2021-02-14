@@ -49,11 +49,7 @@ test:
 #
 production:
   <<: *default
-  adapter: mysql2
-  encoding: utf8
-  database: stock_info_infra
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  timeout: 5000
-  username: stock_info_infra
-  password: 30113011tr
-  socket: /tmp/mysql.sock
+  database: stock_info_production
+  username: root
+  password: <%= ENV['DATABASE_PASSWORD'] %>
+  socket: /var/lib/mysql/mysql.sock
