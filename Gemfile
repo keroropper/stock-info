@@ -68,7 +68,7 @@ gem 'kaminari'
 gem 'rails-i18n', '~> 6.0'
 
 group :production do   
-  gem 'unicorn', '5.8.0' 
+  gem 'unicorn' 
 end
 
 gem 'aws-sdk-s3', require: false
