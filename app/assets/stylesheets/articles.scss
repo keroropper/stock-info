@@ -2,15 +2,12 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-div {                   
-  a:hover {
-    text-decoration: none;
-  }
-  a {                  //aの中の  ,  ↓id=app_nameを参照
-     #app_name {        //#はidを参照する
-      color: white;
-    }
-  }
+// a {
+//   text-decoration: none;
+//   }
+
+div a:hover {
+  text-decoration: none;
 }
 
 .new-post-link {
@@ -118,8 +115,13 @@ hr{
 .show-image {
   display: flex;
   overflow: auto;
+}
   .show_image {
     width: 300px;
     height: 300px;
   }
+
+.all-article {
+  width: 50%; 
+  margin-top: 30px;
 }
